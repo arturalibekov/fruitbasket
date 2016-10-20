@@ -1,0 +1,1 @@
+java -jar target/fruit-basket-0.0.1-SNAPSHOT.jar basket-fruit.txt

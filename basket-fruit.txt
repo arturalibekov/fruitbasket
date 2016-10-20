@@ -1,0 +1,4 @@
+Apple, 10
+Orange, 30
+Apple, 134.12
+Lemon, 4126
