@@ -1,0 +1,23 @@
+# finds git branch
+function __git_ps0() {
+  local branch
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+     if [[ "$branch" == "HEAD" ]]; then
+      git_branch='$yellow(detached*)'
+    else
+      local status=$(git status --porcelain 2> /dev/null)
+      if [[ "$status" != "" ]]; then
+        status="$red*"
+      else
+        status="$green$ok_tick"
+      fi
+      git_branch="$yellow($branch$status$yellow)"
+    fi
+  fi
+#  export PS1="\[$green\]\u@\h \[$cyan\]\w $git_branch $txtrst\n\$ "
+}
+
+alias cd1='cd /cygdrive/c/dev/projects/testgit'
+
+PROMPT_COMMAND="__git_ps0; $PROMPT_COMMAND"
+export PS1='\[$green\]\u@\h \[$cyan\]\w $git_branch $txtrst\n\$ '
